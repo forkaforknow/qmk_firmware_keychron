@@ -1,0 +1,15 @@
+SRC += features/autocorrection.c
+
+CAPS_WORD_ENABLE = yes
+
+COMMAND_ENABLE = no
+RAW_ENABLE = no
+MOUSEKEY_ENABLE = no
+
+MIDI_ENABLE = yes
+DEBOUNCE_TYPE = sym_eager_pk
+DEFERRED_EXEC_ENABLE = yes
+
+OPT_DEFS += -DCORTEX_ENABLE_WFI_IDLE=TRUE -O3
+
+# STM32L432KB (128KB Flash)
