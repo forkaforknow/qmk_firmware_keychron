@@ -28,5 +28,6 @@
     "[json]": {
         "editor.formatOnSave": false
     },
-    "cmake.sourceDirectory": "${workspaceFolder}/lib/printf"
+    "cmake.sourceDirectory": "${workspaceFolder}/lib/printf",
+    "C_Cpp.dimInactiveRegions": false
 }

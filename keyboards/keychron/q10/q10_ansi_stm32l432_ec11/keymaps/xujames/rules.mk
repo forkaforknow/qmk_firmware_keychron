@@ -1,5 +1,7 @@
 SRC += features/autocorrection.c
 
+SEND_STRING_ENABLE = yes
+
 CAPS_WORD_ENABLE = yes
 
 COMMAND_ENABLE = no

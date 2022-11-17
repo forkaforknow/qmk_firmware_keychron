@@ -18,6 +18,8 @@
 #include "features/autocorrection.h"
 // #include "features/mouse_turbo_click.h"
 
+// ToDo: encoder hold-down monitor volume, volume layer
+
 extern MidiDevice midi_device;
 
 #define AN1_GAIN 45                 // Analog 1 microphone gain in dB
@@ -48,7 +50,9 @@ enum custom_keycodes {
     UCX_AN1_PWR,
     UCX_MAINS_VOLU,
     UCX_MAINS_VOLD,
-    UCX_MAINS_PTM
+    UCX_MAINS_PTM,
+    MON_VOLU,
+    MON_VOLD
 };
 
 #define KC_MCTL KC_MISSION_CONTROL
@@ -96,9 +100,9 @@ Analog 1 Gain: channel 1, CC9, set to desired gain. (AT4040 @ 45db) */
 static uint8_t mains_volume = STARTUP_VOLUME;
 const uint16_t PROGMEM encoder_map[][1][2] = {
     [MAC_BASE]    = { ENCODER_CCW_CW(UCX_MAINS_VOLD, UCX_MAINS_VOLU) },
-    [MAC_FN]      = { ENCODER_CCW_CW(RGB_VAD, RGB_VAI) },
+    [MAC_FN]      = { ENCODER_CCW_CW(MON_VOLD, MON_VOLU) },
     [DVORAK_BASE] = { ENCODER_CCW_CW(UCX_MAINS_VOLD, UCX_MAINS_VOLU) },
-    [DVORAK_FN]   = { ENCODER_CCW_CW(RGB_VAD, RGB_VAI) }
+    [DVORAK_FN]   = { ENCODER_CCW_CW(MON_VOLD, MON_VOLU) }
 };
 
 #endif
@@ -170,6 +174,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 midi_send_cc(&midi_device, 0 , 0x07, 0);
             } else {
                 midi_send_cc(&midi_device, 0 , 0x07, mains_volume);
+            }
+            return false;
+        case MON_VOLU:                              // Monitor Volume Up
+            if (record->event.pressed) {
+                SEND_STRING(SS_LCTL(SS_LCMD(SS_LSFT("]"))));
+            }
+            return false;
+        case MON_VOLD:                              // Monitor Volume Down
+            if (record->event.pressed) {
+                SEND_STRING(SS_LCTL(SS_LCMD(SS_LSFT("["))));
             }
             return false;
         case KC_MISSION_CONTROL:
