@@ -18,7 +18,7 @@
 #include "features/autocorrection.h"
 // #include "features/mouse_turbo_click.h"
 
-// ToDo: encoder hold-down monitor volume, volume layer
+// ToDo: HID for google meet bidirectional feedback, RGB status indicators
 
 extern MidiDevice midi_device;
 
@@ -92,19 +92,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  _______,  _______,            _______,  _______,  _______,                       KC_0,               KC_PDOT,                       _______,  _______,  RGB_TOG),
 };
 
+static uint8_t mains_volume = STARTUP_VOLUME;
 #if defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
-
 /* RME Fireface UCX II MIDI Control: (channel 1 maps to 0...)
 Mains Volume: channel 1, CC7, 0 - 127 (0dB @ 104, +6dB @ 127)
 Analog 1 Gain: channel 1, CC9, set to desired gain. (AT4040 @ 45db) */
-static uint8_t mains_volume = STARTUP_VOLUME;
-const uint16_t PROGMEM encoder_map[][1][2] = {
+const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     [MAC_BASE]    = { ENCODER_CCW_CW(UCX_MAINS_VOLD, UCX_MAINS_VOLU) },
     [MAC_FN]      = { ENCODER_CCW_CW(MON_VOLD, MON_VOLU) },
     [DVORAK_BASE] = { ENCODER_CCW_CW(UCX_MAINS_VOLD, UCX_MAINS_VOLU) },
     [DVORAK_FN]   = { ENCODER_CCW_CW(MON_VOLD, MON_VOLU) }
 };
-
 #endif
 
 // clang-format on
@@ -209,7 +207,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 /* TotalMix (turn on Mackie Control Protocol for feedback)
 Mains Volume Fader: Pitch Wheel, channel 9, E8 00 00 to E8 70 7F (0dB @ E8 40 68)
 Watchdog every 820ms: Note On, channel 16, pitch 127, velocity 90 */
-static uint16_t UCX_MIDI_watchdog = 0;
+/*static uint16_t UCX_MIDI_watchdog = 0;
 bool on_startup = true;
 static void midi_note_on_cb(MidiDevice* device, uint8_t channel, uint8_t pitch, uint8_t velocity) {
     switch (channel) {
@@ -232,8 +230,8 @@ static void midi_note_on_cb(MidiDevice* device, uint8_t channel, uint8_t pitch, 
         default:
             break;
     }
-}
+}*/
 
 void keyboard_post_init_user(void) {
-    midi_register_noteon_callback(&midi_device, midi_note_on_cb);
+    //midi_register_noteon_callback(&midi_device, midi_note_on_cb);
 }

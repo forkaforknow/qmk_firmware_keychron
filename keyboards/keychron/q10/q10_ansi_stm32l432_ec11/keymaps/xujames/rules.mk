@@ -1,5 +1,7 @@
 SRC += features/autocorrection.c
 
+ENCODER_MAP_ENABLE = yes
+
 SEND_STRING_ENABLE = yes
 
 CAPS_WORD_ENABLE = yes
@@ -13,5 +15,6 @@ DEBOUNCE_TYPE = sym_eager_pk
 DEFERRED_EXEC_ENABLE = yes
 
 OPT_DEFS += -DCORTEX_ENABLE_WFI_IDLE=TRUE -O3
+LTO_ENABLE = yes
 
 # STM32L432KB (128KB Flash)
