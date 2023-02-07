@@ -203,35 +203,3 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return true;   // Process all other keycodes normally
     }
 }
-
-/* TotalMix (turn on Mackie Control Protocol for feedback)
-Mains Volume Fader: Pitch Wheel, channel 9, E8 00 00 to E8 70 7F (0dB @ E8 40 68)
-Watchdog every 820ms: Note On, channel 16, pitch 127, velocity 90 */
-/*static uint16_t UCX_MIDI_watchdog = 0;
-bool on_startup = true;
-static void midi_note_on_cb(MidiDevice* device, uint8_t channel, uint8_t pitch, uint8_t velocity) {
-    switch (channel) {
-        case 15:
-            if (pitch == 127 && velocity == 90 && (timer_elapsed(UCX_MIDI_watchdog) > 888 || on_startup)) {
-                #ifdef CONSOLE_ENABLE
-                uprintf("UCX disconnect detected, restoring mains volume: %u, and AN1: %ddB.\n", mains_volume, analog_1 ? 0 : AN1_GAIN);
-                #endif
-                midi_send_cc(&midi_device, 0 , 0x07, mains_volume);
-                if (analog_1){
-                    midi_send_cc(&midi_device, 0 , 0x09, 0);
-                }
-                else {
-                    midi_send_cc(&midi_device, 0 , 0x09, AN1_GAIN);
-                }
-                if(on_startup) on_startup = false;
-            }
-            UCX_MIDI_watchdog = timer_read();
-            break;
-        default:
-            break;
-    }
-}*/
-
-void keyboard_post_init_user(void) {
-    //midi_register_noteon_callback(&midi_device, midi_note_on_cb);
-}
