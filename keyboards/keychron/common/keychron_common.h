@@ -14,22 +14,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#pragma once
+
 #include "stdint.h"
 #ifdef VIA_ENABLE
 #    include "via.h"
 #endif
-#include "quantum_keycodes.h"
-#include "via.h"
 
 enum custom_keycodes {
-#ifdef VIA_ENABLE
-    KC_MISSION_CONTROL = USER00,
-#else
-    KC_MISSION_CONTROL = SAFE_RANGE,
-#endif
-    KC_LAUNCHPAD,
-    // KC_DO_NOT_DISTURB,
-    KC_LOPTN,
+    KC_LOPTN = QK_KB_2,
     KC_ROPTN,
     KC_LCMMD,
     KC_RCMMD,
@@ -40,9 +33,6 @@ enum custom_keycodes {
     KC_CORTANA
 };
 
-#define KC_MCTL KC_MISSION_CONTROL
-#define KC_LPAD KC_LAUNCHPAD
-// #define KC_DND  KC_DO_NOT_DISTURB
 #define KC_TASK KC_TASK_VIEW
 #define KC_FLXP KC_FILE_EXPLORER
 #define KC_SNAP KC_SCREEN_SHOT
@@ -55,15 +45,3 @@ typedef struct PACKED {
 
 void housekeeping_task_keychron(void);
 bool process_record_keychron(uint16_t keycode, keyrecord_t *record);
-
-#ifdef DIP_SWITCH_ENABLE
-bool dip_switch_update_keychron(uint8_t index, bool active);
-#endif // DIP_SWITCH_ENABLE
-
-#ifdef RGB_MATRIX_ENABLE
-bool rgb_matrix_indicators_advanced_keychron(uint8_t led_min, uint8_t led_max);
-#endif // RGB_MATRIX_ENABLE
-
-#ifdef LED_MATRIX_ENABLE
-bool led_matrix_indicators_advanced_keychron(uint8_t led_min, uint8_t led_max);
-#endif // LED_MATRIX_ENABLE

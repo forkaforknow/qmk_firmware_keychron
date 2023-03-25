@@ -1,4 +1,4 @@
-/* Copyright 2022 @ Keychron(https://www.keychron.com)
+/* Copyright 2023 @ Keychron(https://www.keychron.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,12 +16,6 @@
 
 #pragma once
 
-/* COL2ROW or ROW2COL */
-#define DIODE_DIRECTION ROW2COL
-
-/* Set 0 if debouncing isn't needed */
-#define DEBOUNCE 5
-
 /* RGB Matrix Driver Configuration */
 #define DRIVER_COUNT 2
 #define DRIVER_ADDR_1 0b1110111
@@ -35,10 +29,14 @@
 #define I2C1_TIMINGR_SCLL 51U
 
 /* Limit the maximum brigtness current of colour white to 500mA */
-#define CKLED2001_CURRENT_TUNE { 0xA8, 0xA8, 0x48, 0xA8, 0xA8, 0x48, 0xA8, 0xA8, 0x48, 0xA8, 0xA8, 0x48 }
+#define CKLED2001_CURRENT_TUNE \
+    { 0xA8, 0xA8, 0x48, 0xA8, 0xA8, 0x48, 0xA8, 0xA8, 0x48, 0xA8, 0xA8, 0x48 }
 
 /* DIP switch */
-#define DIP_SWITCH_MATRIX_GRID  { {5, 4} }
+#define DIP_SWITCH_MATRIX_GRID \
+    {                          \
+        { 5, 4 }               \
+    }
 #define SCAN_COUNT_MAX 100
 
 /* Disable DIP switch in matrix data */
@@ -83,9 +81,13 @@
 #define ENABLE_RGB_MATRIX_PIXEL_RAIN
 // #define ENABLE_RGB_MATRIX_PIXEL_FLOW
 // #define ENABLE_RGB_MATRIX_PIXEL_FRACTAL
+
+#define RGB_MATRIX_FRAMEBUFFER_EFFECTS
 // enabled only if RGB_MATRIX_FRAMEBUFFER_EFFECTS is defined
 #define ENABLE_RGB_MATRIX_TYPING_HEATMAP
 #define ENABLE_RGB_MATRIX_DIGITAL_RAIN
+
+#define RGB_MATRIX_KEYPRESSES
 // enabled only of RGB_MATRIX_KEYPRESSES or RGB_MATRIX_KEYRELEASES is defined
 #define ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
 // #define ENABLE_RGB_MATRIX_SOLID_REACTIVE
@@ -100,10 +102,6 @@
 #define ENABLE_RGB_MATRIX_SOLID_SPLASH
 // #define ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
 
-#define RGB_MATRIX_FRAMEBUFFER_EFFECTS
-#define RGB_MATRIX_KEYPRESSES
-
-/* Enable receive custom command from host */
-#define RAW_HID_CMD 0xAB
-
-#define HOLD_ON_OTHER_KEY_PRESS
+/* Factory test keys */
+#define FN_KEY1 MO(1)
+#define FN_KEY2 MO(3)
