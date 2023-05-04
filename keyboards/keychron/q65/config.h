@@ -37,10 +37,7 @@
 #define MATRIX_MASKED
 
 /* DIP switch */
-#define DIP_SWITCH_MATRIX_GRID \
-    {                          \
-        { 4, 4 }               \
-    }
+#define DIP_SWITCH_MATRIX_GRID { { 4, 4 } }
 #define SCAN_COUNT_MAX 100
 
 /* Turn off effects when suspended */
@@ -106,3 +103,10 @@
 /* Factory test keys */
 #define FN_KEY1 MO(2)
 #define FN_KEY2 MO(3)
+
+#define HC595_STCP A0
+#define HC595_SHCP A1
+#define HC595_DS C15
+
+#define SHIFT_COL_START 0
+#define SHIFT_COL_END 7

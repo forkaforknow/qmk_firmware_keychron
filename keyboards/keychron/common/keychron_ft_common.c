@@ -17,6 +17,11 @@
 #include "keychron_ft_common.h"
 #include "raw_hid.h"
 
+#ifndef NKRO
+#    include <string.h>
+#    define RAW_EPSIZE 32
+#endif
+
 #ifndef BL_TEST_KEY1
 #    define BL_TEST_KEY1 KC_RIGHT
 #endif
@@ -55,17 +60,13 @@ HSV     hsv;
 
 __attribute__((weak)) bool process_record_keychron_ft(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-#if defined(FN_KEY1) || defined(FN_KEY2) || defined(FN_KEY3)
+#if defined(FN_KEY1) || defined(FN_KEY2)
 #    ifdef FN_KEY1
         case FN_KEY1: /* fall through */
 #    endif
 #    ifdef FN_KEY2
         case FN_KEY2:
 #    endif
-#    ifdef FN_KEY3
-        case FN_KEY3:
-#    endif
-#endif
             if (record->event.pressed) {
                 key_press_status |= KEY_PRESS_STEP_0;
             } else {
@@ -73,6 +74,7 @@ __attribute__((weak)) bool process_record_keychron_ft(uint16_t keycode, keyrecor
                 timer_3s_buffer = 0;
             }
             return true;
+#endif
         case KC_J:
             if (record->event.pressed) {
                 key_press_status |= KEY_PRESS_STEP_1;

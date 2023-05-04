@@ -16,14 +16,8 @@
 
 #pragma once
 
-/* Set 0 if debouncing isn't needed */
-#define DEBOUNCE 5
-
 /* DIP switch */
-#define DIP_SWITCH_MATRIX_GRID \
-    {                          \
-        { 5, 4 }               \
-    }
+#define DIP_SWITCH_MATRIX_GRID { { 5, 4 } }
 #define SCAN_COUNT_MAX 100
 
 /* Disable DIP switch in matrix data */
@@ -43,3 +37,9 @@
 /* Factory test keys */
 #define FN_KEY1 MO(1)
 #define FN_KEY2 MO(3)
+
+#define HC595_STCP A0
+#define HC595_SHCP A1
+#define HC595_DS C15
+#define SHIFT_COL_START 11
+#define SHIFT_COL_END 19

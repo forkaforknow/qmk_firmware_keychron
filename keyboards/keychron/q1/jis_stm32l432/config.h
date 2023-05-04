@@ -17,10 +17,7 @@
 #pragma once
 
 /* DIP switch */
-#define DIP_SWITCH_MATRIX_GRID \
-    {                          \
-        { 5, 4 }               \
-    }
+#define DIP_SWITCH_MATRIX_GRID { { 5, 4 } }
 #define SCAN_COUNT_MAX 100
 
 /* RGB Matrix Driver Configuration */
@@ -42,7 +39,7 @@
 
 /* Scan phase of led driver set as MSKPHASE_9CHANNEL(defined as 0x03 in CKLED2001.h) */
 #define PHASE_CHANNEL MSKPHASE_9CHANNEL
-
+/* Set LED driver current */
 #define CKLED2001_CURRENT_TUNE { 0xA0, 0xA0, 0x4D, 0xA0, 0xA0, 0x4D, 0xA0, 0xA0, 0x4D, 0xA0, 0xA0, 0x4D }
 
 /* EEPROM Driver Configuration */

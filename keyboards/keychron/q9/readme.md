@@ -1,12 +1,12 @@
 # Keychron Q9
 
-![Keychron Q9](https://i.imgur.com/G8xJ4TR.jpg[/img])
+![Keychron Q9](https://i.imgur.com/G8xJ4TR.jpg)
 
 A customizable 40% keyboard.
 
 * Keyboard Maintainer: [Keychron](https://github.com/keychron)
 * Hardware Supported: Keychron Q9
-* Hardware Availability: [Keychron](https://www.keychron.com)
+* Hardware Availability: [Keychron Q9 QMK Custom Mechanical Keyboard](https://www.keychron.com/products/keychron-q9-qmk-custom-mechanical-keyboard)
 
 Make example for this keyboard (after setting up your build environment):
 
@@ -18,7 +18,7 @@ Make example for this keyboard (after setting up your build environment):
 Flashing example for this keyboard ([after setting up the bootloadHID flashing environment](https://docs.qmk.fm/#/flashing_bootloadhid))
 
     make keychron/q9/ansi:default:flash
-    make keychron/q9/ansi:default:flash
+    make keychron/q9/ansi_encoder:default:flash
     make keychron/q9/iso:default:flash
     make keychron/q9/iso_encoder:default:flash
 

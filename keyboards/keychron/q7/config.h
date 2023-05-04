@@ -30,14 +30,12 @@
 
 /* Scan phase of led driver set as MSKPHASE_9CHANNEL(defined as 0x03 in CKLED2001.h) */
 #define SCAN_PHASE_CHANNEL MSKPHASE_9CHANNEL
+/* Set LED driver current */
 #define CKLED2001_CURRENT_TUNE \
     { 0xF8, 0xF8, 0x80, 0xF8, 0xF8, 0x80, 0xF8, 0xF8, 0x80, 0xF8, 0xF8, 0x80 }
 
 /* DIP switch */
-#define DIP_SWITCH_MATRIX_GRID \
-    {                          \
-        { 4, 4 }               \
-    }
+#define DIP_SWITCH_MATRIX_GRID { { 4, 4 } }
 
 /* Disable DIP switch in matrix data */
 #define MATRIX_MASKED
